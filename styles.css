@@ -15,6 +15,10 @@
     --exit-btn-hover-clr: #ff4d4d;
     --submit-btn-clr: #4CAF50;
     --submit-btn-hover-clr: #43a047;
+    --read-clr: #2ecc71;
+    --plan-to-read-clr: #ffa500;
+    --plan-to-read-hover: #e69500;
+    --read-hvr: #27ae60;
 }
 
 html {
@@ -214,6 +218,10 @@ h3 {
     word-break: break-word;
 }
 
+.lower-book {
+    width: 100%;
+}
+
 .book-title {
     padding: 10px;
     background-color: white;
@@ -354,10 +362,34 @@ h3 {
     transform: scale(1.05);
 }
 
-.planToRead {
-    background-color: #4CAF50
+.plan-to-read {
+    background-color: var(--plan-to-read-clr);
 }
 
 .read {
-    background-color: yellow;
+    background-color: var(--read-clr);
+}
+
+.plan-to-read:hover {
+    background-color: var(--plan-to-read-hover);
+}
+
+.read:hover {
+    background-color: var(--read-hvr);
+}
+
+.read,
+.plan-to-read {
+    flex: 1;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.read-status {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
 }

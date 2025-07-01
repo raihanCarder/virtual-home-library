@@ -97,6 +97,7 @@ function addBookToShelf(book) {
     tempDeleteBtn.classList.add("delete-btn");
     tempDeleteBtn.id = `delete-btn-${book.id}`;
     tempDeleteBtn.textContent = "Delete";
+
     bookLayout.classList.add("one-book-input");
     bookLayout.id = `book-layout-${book.id}`;
 
@@ -111,13 +112,39 @@ function addBookToShelf(book) {
                         <div class="lower-book">
                             <p class="subtext">Pages: ${book.pages}</p>
                             <p class="subtext">Your Rating: ${book.rating}/10</p>
-                            <p class="subtext">Status: ${book.read ? "Read" : "Plan to Read"}</p>
+                            <p class="subtext read-status"><span class="subtext">Status:</span> <button class="${book.read ? "read" : "plan-to-read"} read-btn" id="read-btn-${book.id}">${book.read ? "Read" : "Plan to Read"}</button></p>
                         </div>`;
 
     bookLayout.appendChild(bookDesign);
     bookLayout.appendChild(tempDeleteBtn);
     bookshelf.appendChild(bookLayout);
     tempDeleteBtn.addEventListener("click", (e) => deleteBook(e.target.id));
+
+    const readBtn = bookDesign.querySelector(".read-btn");
+    readBtn.addEventListener("click", (e) => updateReadStatus(e));
+
+    updateStats();
+}
+
+function updateReadStatus(e) {
+    const id = e.target.id.substring(9);
+    const btn = e.target;
+
+    const index = myLibrary.findIndex(book => book.id === id);
+    myLibrary[index].read = !myLibrary[index].read;
+
+
+    if (btn.classList.contains("read")) {
+        btn.textContent = "Plan to Read";
+        btn.classList.add("plan-to-read");
+        btn.classList.remove("read");
+    }
+    else {
+        btn.textContent = "Read"
+        btn.classList.add("read");
+        btn.classList.remove("plan-to-read");
+    }
+
     updateStats();
 }
 
@@ -165,7 +192,11 @@ function updateStats() {
 }
 
 
+// Read Button 
 
+function hasRead() {
+
+}
 
 // Event Listeners
 
