@@ -9,12 +9,13 @@ const authorInput = document.getElementById("author");
 const pagesInput = document.getElementById("pages");
 const ratingInput = document.getElementById("rating");
 const readInput = document.getElementById("read-select");
-const deleteBookBtn = document.getElementById("delete-btn");
+const totalBooksStat = document.getElementById("total-book-stat");
+const booksReadStat = document.getElementById("books-read-stat");
+const planToReadStat = document.getElementById("not-read-stat");
+const avgRatingStat = document.getElementById("average-score-stat");
 
 const myLibrary = [];
 const colorList = [
-    "#f9f9f9",
-    "#f0f0f0",
     "#fdf6e3",
     "#ffe5b4",
     "#d0f0c0",
@@ -27,8 +28,18 @@ const colorList = [
     "#dbeafe",
     "#f8d7da",
     "#ffe4e1",
-    "#f3f4f6"
-];;
+    "#ffd6d6",
+    "#ffb3c6",
+    "#fbc4ab",
+    "#f3c4fb",
+    "#e0bbff",
+    "#dabfff"
+];
+
+// Testing
+
+const exampleBook = new Book("Title", "Author", 10000, 10, true);
+addBookToShelf(exampleBook);
 
 // Modal
 
@@ -54,15 +65,6 @@ function submitForm(e) {
 
     addBookToShelf(book);
     exitModal();
-
-    // test
-
-    console.log(title);
-    console.log(author);
-    console.log(pages);
-    console.log(rating);
-    console.log(read);
-    console.log(book);
 }
 
 // Create Book
@@ -94,33 +96,76 @@ function addBookToShelf(book) {
 
     tempDeleteBtn.classList.add("delete-btn");
     tempDeleteBtn.id = `delete-btn-${book.id}`;
+    tempDeleteBtn.textContent = "Delete";
     bookLayout.classList.add("one-book-input");
     bookLayout.id = `book-layout-${book.id}`;
+
     bookDesign.classList.add("book");
     bookDesign.style.backgroundColor = book.color;
 
-    bookDesign.innerHTML = `<div class="book">
-                        <div class="upper-book">
+    bookDesign.innerHTML = `<div class="upper-book">
                             <p class="book-title">${book.title}
                             </p>
                             <p class="subtext">By: ${book.author}</p>
                         </div>
                         <div class="lower-book">
                             <p class="subtext">Pages: ${book.pages}</p>
-                            <p class="subtext">Status: ${book.read ? "Read" : "Plan to Read"}</p>
                             <p class="subtext">Your Rating: ${book.rating}/10</p>
-                        </div>
-                    </div>`;
+                            <p class="subtext">Status: ${book.read ? "Read" : "Plan to Read"}</p>
+                        </div>`;
 
     bookLayout.appendChild(bookDesign);
     bookLayout.appendChild(tempDeleteBtn);
     bookshelf.appendChild(bookLayout);
+    tempDeleteBtn.addEventListener("click", (e) => deleteBook(e.target.id));
+    updateStats();
 }
 
 function randomColor() {
-    const num = Math.floor(Math.random() * 15);
+    const num = Math.floor(Math.random() * 18);
     return colorList[num];
 }
+
+function deleteBook(oldId) {
+    const id = oldId.substring(11);
+
+    const element = document.getElementById(`book-layout-${id}`);
+    element.remove();
+
+    const index = myLibrary.findIndex(book => book.id === id);
+
+    if (index !== -1) {
+        myLibrary.splice(index, 1);
+    }
+
+    updateStats();
+}
+
+// Stats Functions
+
+function updateStats() {
+
+    if (myLibrary.length === 0) {
+        totalBooksStat.textContent = 0;
+        avgRatingStat.textContent = 0;
+        booksReadStat.textContent = 0;
+        planToReadStat.textContent = 0;
+        return;
+    }
+
+    const totalBooks = myLibrary.length;
+    const averageScore = Number((myLibrary.map((book) => book.rating).reduce((acc, el) => acc + el, 0) / myLibrary.length).toFixed(2));
+    const booksRead = myLibrary.filter((book) => book.read === true).length;
+    const planToRead = myLibrary.filter((book) => book.read === false).length;
+
+    totalBooksStat.textContent = totalBooks;
+    avgRatingStat.textContent = `${averageScore}/10`;
+    booksReadStat.textContent = booksRead;
+    planToReadStat.textContent = planToRead;
+}
+
+
+
 
 // Event Listeners
 

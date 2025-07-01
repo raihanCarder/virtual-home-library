@@ -14,10 +14,10 @@
             <h1 id="title">Virtual Library</h1>
             <div class="library-stats">
                 <h2>Library Stats</h2>
-                <p>Books in Library: 0</p>
-                <p>Books read: 0 </p>
-                <p>Plan to read: 0 </p>
-                <p>Average Score: 0</p>
+                <p>Books in Library: <span id="total-book-stat" class="stat">0</span></p>
+                <p>Books read: <span id="books-read-stat" class="stat">0</span></p>
+                <p>Plan to read: <span id="not-read-stat" class="stat">0</span></p>
+                <p>Average Score: <span id="average-score-stat" class="stat">0</span></p>
             </div>
         </div>
         <div class="books-section">
@@ -26,43 +26,7 @@
                     <img src="images/plus-circle.svg" alt="Add Sign" id="add-sign">
                 </button>
             </div>
-            <div class="bookshelf">
-
-                <div class="one-book-input">
-                    <div class="book">
-                        <div class="upper-book">
-                            <p class="book-title">Naruto
-                            </p>
-                            <p class="subtext">By: Robert Munch</p>
-
-                        </div>
-                        <div class="lower-book">
-                            <p class="subtext">Pages:10000</p>
-                            <p class="subtext">Status: Plan to Read</p>
-                            <p class="subtext">Your Rating: 10/10</p>
-                        </div>
-                    </div>
-                    <button class="delete-btn" id="delete-btn-">Delete</button>
-                </div>
-                <div class="one-book-input">
-                    <div class="book">
-                        <div class="upper-book">
-                            <p class="book-title">
-                                Wizard of Oz:
-                            </p>
-                            <p class="subtext">By: Robert Munch</p>
-
-                        </div>
-                        <div class="lower-book">
-                            <p class="subtext">Pages:</p>
-                            <p class="subtext">Status: Not Read</p>
-                            <p class="subtext">Your Rating:</p>
-                        </div>
-                    </div>
-                    <button class="delete-btn">Delete</button>
-                </div>
-
-
+            <div class="bookshelf" id="bookshelf">
             </div>
         </div>
     </div>
@@ -76,13 +40,13 @@
             </label>
             <label for="author" id="author-label">
                 <img src="images/account-tie.svg" alt="Author" class="form-images">
-                <input type="text" id="author" required class="input-design" placeholder="Author*">
+                <input type="text" id="author" required class="input-design" placeholder="Author*" maxlength="100">
             </label>
             <label for="pages" id="pages-label">
                 <p id="pages-text">Pages*:
                 </p><input type="number" id="pages" min="1" max="10000" required class="input-design" placeholder="1">
             </label>
-            <label for="score" id="rating-label">
+            <label for="rating" id="rating-label">
                 <p id="rating-text">Rating*:</p><input type="number" max="10" min="0" required placeholder="0"
                     class="input-design" id="rating">
             </label>
@@ -93,6 +57,7 @@
                     <option value="Not Read">Not Read</option>
                 </select>
             </label>
+
             <div class="form-buttons">
                 <button type="submit" id="form-submit">Add Book</button>
                 <button id="form-exit-btn" type="button">Exit</button>

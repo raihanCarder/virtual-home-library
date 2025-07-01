@@ -10,11 +10,11 @@
     --btn-text-clr: black;
     --stats-bg-clr: #F0F0F0;
     --delete-btn-clr: #f28b82;
+    --delete-btn-hover: #e06666;
     --form-exit-btn-clr: #ff6b6b;
     --exit-btn-hover-clr: #ff4d4d;
     --submit-btn-clr: #4CAF50;
     --submit-btn-hover-clr: #43a047;
-
 }
 
 html {
@@ -77,8 +77,11 @@ h3 {
     border-radius: 10px;
     width: 20%;
     border: none;
-
     background-color: var(--stats-bg-clr);
+}
+
+.stat {
+    font-weight: bold;
 }
 
 #title {
@@ -120,6 +123,11 @@ h3 {
 
     grid-template-areas: "controls" "bookshelf";
     min-height: 0;
+}
+
+.subtext {
+    font-weight: bold;
+    font-size: 1rem;
 }
 
 .book-options {
@@ -174,11 +182,10 @@ h3 {
     font-weight: bold;
     border: none;
     cursor: pointer;
-
 }
 
 .delete-btn:hover {
-    background-color: #1c1c1e;
+    background-color: var(--delete-btn-hover);
 }
 
 
@@ -196,7 +203,6 @@ h3 {
     gap: 20px;
 
     overflow-y: auto;
-
 }
 
 .upper-book {
@@ -346,4 +352,12 @@ h3 {
 #form-exit-btn:hover {
     background-color: var(--exit-btn-hover-clr);
     transform: scale(1.05);
+}
+
+.planToRead {
+    background-color: #4CAF50
+}
+
+.read {
+    background-color: yellow;
 }
