@@ -13,7 +13,7 @@
         <div class="header">
             <h1 id="title">Virtual Library</h1>
             <div class="library-stats">
-                <h2>Book Stats</h2>
+                <h2>Library Stats</h2>
                 <p>Books in Library: 0</p>
                 <p>Books read: 0 </p>
                 <p>Plan to read: 0 </p>
@@ -31,19 +31,18 @@
                 <div class="one-book-input">
                     <div class="book">
                         <div class="upper-book">
-                            <p class="book-title">
-                                Wizard of Oz:
+                            <p class="book-title">Naruto
                             </p>
                             <p class="subtext">By: Robert Munch</p>
 
                         </div>
                         <div class="lower-book">
-                            <p class="subtext">Pages:</p>
+                            <p class="subtext">Pages:10000</p>
                             <p class="subtext">Status: Plan to Read</p>
-                            <p class="subtext">Your Rating:</p>
+                            <p class="subtext">Your Rating: 10/10</p>
                         </div>
                     </div>
-                    <button class="delete-btn">Delete</button>
+                    <button class="delete-btn" id="delete-btn-">Delete</button>
                 </div>
                 <div class="one-book-input">
                     <div class="book">
@@ -70,25 +69,34 @@
 
     <dialog id="modal" closedby="any">
         <form action="" method="post" id="form-modal">
-            <p>Book Information:</p>
-            <label for="book-title">
-                Title: <input type="text" id="book-title" required placeholder="Title*" maxlength="100">
+            <p id="form-title">Book Information</p>
+            <label for="book-title" id="book-label">
+                <img src="images/book.svg" alt="Book" class="form-images">
+                <input type="text" id="book-title" required placeholder="Title*" maxlength="100" class="input-design">
             </label>
-            <label for="author">
-                Author: <input type="text" id="author" required>
+            <label for="author" id="author-label">
+                <img src="images/account-tie.svg" alt="Author" class="form-images">
+                <input type="text" id="author" required class="input-design" placeholder="Author*">
             </label>
-            <label for="pages">
-                Page Count: <input type="number" id="pages" min="1" max="10000" required>
+            <label for="pages" id="pages-label">
+                <p id="pages-text">Pages*:
+                </p><input type="number" id="pages" min="1" max="10000" required class="input-design" placeholder="1">
             </label>
-            <select name="read-select" id="read-select" required>
-                <option value="" disabled selected>Select an Option</option>
-                <option value="read">Read</option>
-                <option value="Not Read">Not Read</option>
-            </select>
-            <label for="score">
-                Score: (out of 10)<input type="number" max="10" min="0" required placeholder="Score: (out of 10)">
+            <label for="score" id="rating-label">
+                <p id="rating-text">Rating*:</p><input type="number" max="10" min="0" required placeholder="0"
+                    class="input-design" id="rating">
             </label>
-            <button type="submit">Add Book</button>
+            <label for="read-select" id="select-label">Read*:
+                <select name="read-select" id="read-select" required>
+                    <option value="" disabled selected>Select an Option</option>
+                    <option value="read">Read</option>
+                    <option value="Not Read">Not Read</option>
+                </select>
+            </label>
+            <div class="form-buttons">
+                <button type="submit" id="form-submit">Add Book</button>
+                <button id="form-exit-btn" type="button">Exit</button>
+            </div>
 
         </form>
     </dialog>
