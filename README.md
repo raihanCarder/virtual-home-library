@@ -15,7 +15,7 @@ This program helped me get very familiar with Javascript objects and improved my
 
 [Live Demo](https://raihancarder.github.io/virtual-home-library/)
 
-## Screenshot
+## Screenshots
 
 ![Library Screenshot](images/screenshot1.png)
 ![Library with Books Screenshot](images/screenshot2.png)
