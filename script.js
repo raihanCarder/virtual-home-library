@@ -181,7 +181,7 @@ function updateStats() {
     }
 
     const totalBooks = myLibrary.length;
-    const averageScore = Number((myLibrary.map((book) => book.rating).reduce((acc, el) => acc + el, 0) / myLibrary.length).toFixed(2));
+    const averageScore = Number((myLibrary.filter((book) => book.rating !== 0).map((book) => book.rating).reduce((acc, el) => acc + el, 0) / myLibrary.filter((book) => book.rating !== 0).length).toFixed(2));
     const booksRead = myLibrary.filter((book) => book.read === true).length;
     const planToRead = myLibrary.filter((book) => book.read === false).length;
 
@@ -189,13 +189,6 @@ function updateStats() {
     avgRatingStat.textContent = `${averageScore}/10`;
     booksReadStat.textContent = booksRead;
     planToReadStat.textContent = planToRead;
-}
-
-
-// Read Button 
-
-function hasRead() {
-
 }
 
 // Event Listeners
